@@ -60,7 +60,7 @@ const Header = props => {
           </li>
 
           <li className="nav-menu-item-mobile">
-            <Link to="/add-file" className="nav-link">
+            <Link to="/" className="nav-link">
               Add File
             </Link>
           </li>
