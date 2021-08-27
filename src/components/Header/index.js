@@ -16,7 +16,7 @@ const Header = props => {
       <div className="nav-content">
         <div className="nav-bar-mobile-logo-container">
           
-          <button type="button" className="nav-mobile-btn">
+          <button type="button" onClick={onClickLogout} className="nav-mobile-btn">
             Logout
           </button>
         </div>
