@@ -1,5 +1,7 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
+import Pagination from "react-js-pagination";
+
 import { Link } from 'react-router-dom';
 import EachRecord from '../EachRecord';
 import Header from '../Header';
@@ -9,7 +11,10 @@ class Records extends Component{
     state={
         allRecords:[],
         isFailure:false,
-        isLoading:true
+        isLoading:true,
+	activePage:1,
+	itemsPerPage:5,
+	totalPages:0
     }
     componentDidMount(){
         setTimeout(() => {
@@ -17,17 +22,33 @@ class Records extends Component{
         }, 2000);
         
     }
+handlePageChange=(pageNumber)=> {
+    this.setState({activePage: pageNumber});
+  }
     getRecords=()=>{
         const storedRecords=localStorage.getItem("records");
         if(storedRecords!==undefined){
-            this.setState({allRecords:JSON.parse(storedRecords),isLoading:false})
+            this.setState({allRecords:JSON.parse(storedRecords),isLoading:false,totalPages:JSON.parse(storedRecords).length})
         }
         else{
             this.setState({isFailure:true,isLoading:false})
         }
     }
+	getLimitedRecords=()=>{
+		const {activePage,itemsPerPage,totalPages,allRecords}=this.state
+		const index=itemsPerPage*(activePage-1)
+		if(index+(itemsPerPage-1)<=totalPages){
+			const endIndex=index+(itemsPerPage-1)
+			const currentPageRecords=allRecords.slice(index,endIndex+1)
+			return currentPageRecords
+		}
+		else{
+			const currentPageRecords=allRecords.slice(index,totalPages+1)
+			return currentPageRecords
+		}
+	}
     renderAllRecords=()=>{
-        const {allRecords}=this.state
+        const {allRecords,activePage,totalPages,itemsPerPage}=this.state
         if(allRecords!==[]){
             return <div className="all-records-container-view">
                 <h1 className="all-records-heading">All Records</h1>
@@ -40,7 +61,21 @@ class Records extends Component{
           </button></div>
                 
               </Link>
-            <ul className="all-records-container">{allRecords.map(record=><EachRecord key={record.id} data={record} />)}</ul>
+            <ul className="all-records-container">
+		{this.getLimitedRecords().map(record=><EachRecord key={record.id} data={record}  />)}
+		</ul>
+		<div>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={itemsPerPage}
+          totalItemsCount={totalPages}
+          pageRangeDisplayed={3}
+          innerClass={'pagination-ul-container'}
+          activeClass={'pagination-active-li'}
+          itemClass={'pagination-li'}
+          onChange={this.handlePageChange}
+        />
+      </div>
             </div>
         }
         else{

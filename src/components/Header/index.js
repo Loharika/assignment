@@ -15,19 +15,9 @@ const Header = props => {
     <nav className="nav-header">
       <div className="nav-content">
         <div className="nav-bar-mobile-logo-container">
-          <img
-            className="website-logo"
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
-            alt="website logo"
-          />
-
+          
           <button type="button" className="nav-mobile-btn">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
-              alt="nav logout"
-              className="nav-bar-image"
-              onClick={onClickLogout}
-            />
+            Logout
           </button>
         </div>
 
@@ -65,32 +55,20 @@ const Header = props => {
         <ul className="nav-menu-list-mobile">
           <li className="nav-menu-item-mobile">
             <Link to="/" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png"
-                alt="nav home"
-                className="nav-bar-image"
-              />
+              Home
             </Link>
           </li>
 
           <li className="nav-menu-item-mobile">
-            <Link to="/products" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-products-icon.png"
-                alt="nav products"
-                className="nav-bar-image"
-              />
+            <Link to="/add-file" className="nav-link">
+              Add File
             </Link>
           </li>
-          <li className="nav-menu-item-mobile">
-            <Link to="/cart" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
-                alt="nav cart"
-                className="nav-bar-image"
-              />
-            </Link>
-          </li>
+          <li className="nav-menu-item">
+              <Link to="/records" className="nav-link">
+                Records
+              </Link>
+            </li>
         </ul>
       </div>
     </nav>

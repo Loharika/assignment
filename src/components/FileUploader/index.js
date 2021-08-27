@@ -70,10 +70,7 @@ class FileUploader extends Component {
                     {showError?<p className="error-text">please check the file you have uploaded </p>:''}
                     <button type="submit" className="submit-button">
                         Submit
-                    </button>
-                    
-                    
-                    
+                    </button> 
                 </form>
             </div>
             
