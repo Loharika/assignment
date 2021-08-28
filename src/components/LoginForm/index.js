@@ -99,6 +99,8 @@ class LoginForm extends Component {
       <div className="login-form-container-view">
         
         <form className="form-container-view" onSubmit={this.submitForm}>
+        <img src="https://previews.123rf.com/images/keviz/keviz1803/keviz180302253/98879828-book-education-logo-vector-isolated-on-plain-background-.jpg" alt="header-logo" className="login-page-logo"/>
+         
           <h1 className="login-heading"> Please Login Here</h1>
           <div className="input-container">{this.renderUsernameField()}</div>
           <div className="input-container">{this.renderPasswordField()}</div>

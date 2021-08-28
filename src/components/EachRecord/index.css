@@ -6,9 +6,7 @@
       align-items: flex-start;
       width: 90%;
       max-width: 1110px;
-      margin:20px 15px;
-      box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
-    padding: 14px 8px 14px 8px;
+      
 }
 .record-title{
     margin:5px 5px;
@@ -27,3 +25,27 @@
     margin:10px 5px;
     font-size: 20px;
 }
+.each-card-img{
+    width:120px;
+    height:120px;
+}
+.record-container-list-item{
+    display: flex;
+    align-items: center;
+    margin:20px 15px;
+      box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+    padding: 14px 8px 14px 8px;
+}
+@media screen and (max-width: 991px) {
+    .record-container-list-item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .record-container-list-item{
+        display: flex;
+        align-items: center;
+    }
+  }

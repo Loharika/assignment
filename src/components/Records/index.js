@@ -27,8 +27,11 @@ handlePageChange=(pageNumber)=> {
   }
     getRecords=()=>{
         const storedRecords=localStorage.getItem("records");
-        if(storedRecords!==undefined){
+        if(storedRecords!==null){
             this.setState({allRecords:JSON.parse(storedRecords),isLoading:false,totalPages:JSON.parse(storedRecords).length})
+        }
+        else if(storedRecords===null){
+            this.setState({allRecords:[],isLoading:false,totalPages:0})
         }
         else{
             this.setState({isFailure:true,isLoading:false})
@@ -49,18 +52,17 @@ handlePageChange=(pageNumber)=> {
 	}
     renderAllRecords=()=>{
         const {allRecords,activePage,totalPages,itemsPerPage}=this.state
-        if(allRecords!==[]){
+        if(allRecords.length!==0){
             return <div className="all-records-container-view">
+                <div className="records-header">
                 <h1 className="all-records-heading">All Records</h1>
                 <Link to="/" className="nav-link">
-                    <div className="add-file-btn-container"><button
-            type="button"
-            className="add-file-btn"
-          >
-            Add File
+                    <div className="add-file-btn-container"><button type="button" className="add-file-btn">
+            + Add File
           </button></div>
-                
+          
               </Link>
+              </div>
             <ul className="all-records-container">
 		{this.getLimitedRecords().map(record=><EachRecord key={record.id} data={record}  />)}
 		</ul>
@@ -71,7 +73,7 @@ handlePageChange=(pageNumber)=> {
           totalItemsCount={totalPages}
           pageRangeDisplayed={3}
           innerClass={'pagination-ul-container'}
-          activeClass={'pagination-active-li'}
+          activeClass={'pntaineragination-active-li'}
           itemClass={'pagination-li'}
           onChange={this.handlePageChange}
         />
@@ -79,8 +81,15 @@ handlePageChange=(pageNumber)=> {
             </div>
         }
         else{
-            return <div>
-                <h1>No Records Found</h1>
+            return <div className="no-records-found-container">
+                <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_14486407500Folder.png" alt="no-records" className="no-records-img" />
+                <h1 className="no-records-found-heading">No Records Found</h1>
+                <Link to="/" className="nav-link">
+                    <div className="add-file-btn-container"><button type="button" className="add-file-btn">
+                    + Add File
+                </button></div>
+                
+              </Link>
             </div>
         }
     }

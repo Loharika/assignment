@@ -61,11 +61,14 @@
     }
   }
   .add-file-btn-container{
-    text-align: right;
-    margin-right:200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin-left:15px;
   }
   .add-file-btn{
-    
+   
     font-family: 'Roboto';
     font-weight: 600;
     font-size: 20px;
@@ -75,7 +78,7 @@
     background-color:#0b69ff;;
     border: none;
     border-radius: 4px;
-    margin-left: 14px;
+    margin-right: auto;
     cursor: pointer;
     outline: none;
   }
@@ -85,7 +88,7 @@
 
   .pagination-ul-container{
     
-    width:100vw;
+    width:100%;
     display: flex;
     justify-content: center;
   }
@@ -105,4 +108,22 @@
     list-style: none;
     font-size: 15px;
     border-radius:5px;
+  }
+  .no-records-found-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-records-found-heading{
+    text-align: center;
+  }
+  .no-records-img{
+    width:125px;
+    height:125px;
+  }
+  .records-header{
+    display: flex;
+    flex-direction: column;
   }

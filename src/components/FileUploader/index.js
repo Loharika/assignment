@@ -1,5 +1,4 @@
 import {Component} from 'react'
-import allRecords from '../../getAllRecords.json'
 import './index.css'
 
 class FileUploader extends Component {
@@ -8,21 +7,21 @@ class FileUploader extends Component {
         showError:false,
         dataFromFile:""
     }
-
-    componentDidMount(){
-      const strigifiedData=JSON.stringify(allRecords)
-      localStorage.setItem("records",strigifiedData);
-    }
     postTheDataFile=()=>{
       const {dataFromFile}=this.state
 
       const storedRecords=localStorage.getItem("records");
-        if(storedRecords!==undefined){
+      if(storedRecords!==null){
           const parsedData=JSON.parse(storedRecords)
           const updatedData=[...JSON.parse(dataFromFile),...parsedData]
           const strigifiedData=JSON.stringify(updatedData)
           localStorage.setItem("records",strigifiedData);
-        }
+      }
+      else if(storedRecords===null){
+        const updatedData=[...JSON.parse(dataFromFile)]
+        const strigifiedData=JSON.stringify(updatedData)
+        localStorage.setItem("records",strigifiedData);
+      }
       this.onSubmitSuccess()
       
     }
@@ -64,6 +63,7 @@ class FileUploader extends Component {
         return (
             <div className="form-container">
                 <form onSubmit={this.onSubmitForm} className="file-upload-form">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYdJE8PcplenlhMPSH7ip9-WPZn-1KFP1sva7lcZM5YSgaAA1ZmXV1ZyvkEW23STWWMec&usqp=CAU" alt="upload file" className="upload-file-img"/>
                     <h1>Upload The File</h1>
                     <label htmlFor="file" className="file-label">Choose a file:</label><br/>
                     <input type="file" id="file" className="file-input" name="myfile" onChange={this.checkTheFile}/>
